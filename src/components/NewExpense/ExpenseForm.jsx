@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import './ExpenseForm.css';
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
 	// Multi state aproach
 	const [enteredTitle, setEnteredTitle] = useState('');
 	const [enteredAmount, setEnteredAmount] = useState('');
@@ -56,7 +56,7 @@ const ExpenseForm = () => {
 			date: new Date(enteredDate),
 		};
 
-		console.log(expenseData);
+		props.onSaveExpenseData(expenseData);
 		setEnteredTitle('');
 		setEnteredAmount('');
 		setEnteredDate('');
@@ -69,6 +69,7 @@ const ExpenseForm = () => {
 					<label>Title</label>
 					<input
 						type='text'
+						placeholder='Title'
 						value={enteredTitle}
 						onChange={titleChangeHandler}
 					/>
@@ -77,6 +78,7 @@ const ExpenseForm = () => {
 					<label>Amount</label>
 					<input
 						type='number'
+						placeholder='0.00'
 						min='0.01'
 						step='0.01'
 						value={enteredAmount}
